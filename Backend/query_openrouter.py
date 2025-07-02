@@ -3,7 +3,13 @@ import json
 from dotenv import load_dotenv
 import os
 
-def query_openrouter(message, model_type = 'deepseek/deepseek-r1-0528-qwen3-8b:free'):
+def query_openrouter(message : str, model_type = 'deepseek/deepseek-r1-0528-qwen3-8b:free') -> str:
+    """
+    @brief Делает запрос в openrouter
+    @param message строка для отправке в API Openrouter
+    @param model_type необязательный параметр определяющий id LLM-ки
+    @returns ответ нейронной сети, либо структура ошибки
+    """
 
     load_dotenv()
     openai_api_key = os.getenv('OPENAI_API_KEY')
@@ -42,14 +48,13 @@ def query_openrouter(message, model_type = 'deepseek/deepseek-r1-0528-qwen3-8b:f
         
     })
     )
-    return response.content
+    unicode_string = response.content.decode('utf-8')
+    parsed_data = json.loads(unicode_string)
+    if parsed_data and parsed_data['choices'] and parsed_data['choices'][0] and parsed_data['choices'][0]['message']:
+        return parsed_data['choices'][0]['message']['content']
+    else:
+        return parsed_data
 
 if __name__ == "__main__":
-    with open("output.txt","w") as file:
-        resp = query_openrouter("Привет! Как дела? Мне нужно проверить запрос по API ключу, надеюсь ты не против?\n\nЕсли тебе скучно можешь ответить на вопрос: что возвращает requests.Post, как получить ответ и какой он будет?")
-        unicode_string = resp.decode('utf-8')
-        parsed_data = json.loads(unicode_string)
-
-        print(parsed_data['choices'][0]['message']['content'])
-        if resp:
-            file.write(str(parsed_data['choices'][0]['message']['content']))
+    resp = query_openrouter("Привет! Как дела? Мне нужно проверить запрос по API ключу, надеюсь ты не против?\n\nЕсли тебе скучно можешь ответить на вопрос: что возвращает requests.Post, как получить ответ и какой он будет?")
+    print(resp)
