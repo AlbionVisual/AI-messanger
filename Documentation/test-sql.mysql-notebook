@@ -2,7 +2,7 @@
     "type": "MySQLNotebook",
     "version": "1.0",
     "caption": "DB Notebook",
-    "content": "USE ai_chat_db\nSHOW TABLES\nDESCRIBE conversations\nINSERT INTO conversations (title) VALUES ('Первый диалог');\nINSERT INTO conversations (title) VALUES ('Второй диалог');\nSELECT * FROM conversations\nDELETE FROM conversations WHERE created_at > '2025-02-07'\nUPDATE conversations SET title = 'Не первый диалог' WHERE title = 'Первый диалог'\nUPDATE conversations SET title = 'Второй диалог' WHERE id = 6\nDESCRIBE messages\n\n\n\n\n\n\n\n\n\n\n",
+    "content": "USE ai_chat_db\nSHOW TABLES\nDESCRIBE conversations\nINSERT INTO conversations (title) VALUES ('Первый диалог');\nINSERT INTO conversations (title) VALUES ('Второй диалог');\nSELECT * FROM conversations\nDELETE FROM conversations WHERE id > 9\nUPDATE conversations SET title = 'Не первый диалог' WHERE title = 'Первый диалог'\nUPDATE conversations SET title = 'Второй диалог' WHERE id = 6\nDESCRIBE messages\nDESCRIBE conversations\n",
     "options": {
         "tabSize": 4,
         "indentSize": 4,
@@ -15,22 +15,22 @@
             {
                 "inSelectionMode": false,
                 "selectionStart": {
-                    "lineNumber": 14,
-                    "column": 1
+                    "lineNumber": 7,
+                    "column": 39
                 },
                 "position": {
-                    "lineNumber": 14,
-                    "column": 1
+                    "lineNumber": 7,
+                    "column": 39
                 }
             }
         ],
         "viewState": {
             "scrollLeft": 0,
             "firstPosition": {
-                "lineNumber": 7,
+                "lineNumber": 4,
                 "column": 1
             },
-            "firstPositionDeltaTop": 239
+            "firstPositionDeltaTop": 20
         },
         "contributionsState": {
             "editor.contrib.folding": {},
@@ -49,8 +49,8 @@
                         {
                             "type": 2,
                             "index": 0,
-                            "resultId": "54028634-6d3f-4711-e95f-39d953db92c9",
-                            "content": "OK, 0 records retrieved in 0.866ms"
+                            "resultId": "102401b1-094a-441a-e67b-4c272154dcdb",
+                            "content": "OK, 0 records retrieved in 0.777ms"
                         }
                     ]
                 },
@@ -78,7 +78,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "faaca1d4-9dea-4383-d7ff-70ad772b361b"
+                        "b583519e-1ad3-4ec6-8904-cd75e866f144"
                     ]
                 },
                 "currentHeight": 36,
@@ -97,8 +97,8 @@
             },
             "data": [
                 {
-                    "tabId": "3e846d78-fc42-4b83-931e-501230f79c61",
-                    "resultId": "faaca1d4-9dea-4383-d7ff-70ad772b361b",
+                    "tabId": "bcbbf515-73c8-4988-9710-b6b008f77aed",
+                    "resultId": "b583519e-1ad3-4ec6-8904-cd75e866f144",
                     "rows": [
                         {
                             "0": "conversations"
@@ -147,7 +147,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "9d4dbb46-1eef-402e-9f0d-facef961beb5"
+                        "b9d9066c-2f3b-4063-bb5f-24b1dcce2027"
                     ]
                 },
                 "currentHeight": 36,
@@ -166,8 +166,8 @@
             },
             "data": [
                 {
-                    "tabId": "3e846d78-fc42-4b83-931e-501230f79c61",
-                    "resultId": "9d4dbb46-1eef-402e-9f0d-facef961beb5",
+                    "tabId": "bcbbf515-73c8-4988-9710-b6b008f77aed",
+                    "resultId": "b9d9066c-2f3b-4063-bb5f-24b1dcce2027",
                     "rows": [
                         {
                             "0": "id",
@@ -339,7 +339,7 @@
                         }
                     ]
                 },
-                "currentHeight": 28,
+                "currentHeight": 61,
                 "currentSet": 1,
                 "statements": [
                     {
@@ -372,10 +372,10 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "37d65979-7fca-4373-d227-54222f675d11"
+                        "c896f853-4d74-4e67-f5be-f985a326ddf3"
                     ]
                 },
-                "currentHeight": 273.84375,
+                "currentHeight": 207.5625,
                 "currentSet": 1,
                 "statements": [
                     {
@@ -391,8 +391,8 @@
             },
             "data": [
                 {
-                    "tabId": "3e846d78-fc42-4b83-931e-501230f79c61",
-                    "resultId": "37d65979-7fca-4373-d227-54222f675d11",
+                    "tabId": "bcbbf515-73c8-4988-9710-b6b008f77aed",
+                    "resultId": "c896f853-4d74-4e67-f5be-f985a326ddf3",
                     "rows": [
                         {
                             "0": 5,
@@ -417,18 +417,6 @@
                             "1": "Не второй диалог",
                             "2": "2025-07-02 02:40:22",
                             "3": "2025-07-02 02:41:56"
-                        },
-                        {
-                            "0": 10,
-                            "1": "Третий диалог",
-                            "2": "2025-07-02 08:45:29",
-                            "3": "2025-07-02 08:45:29"
-                        },
-                        {
-                            "0": 11,
-                            "1": "Третий диалог",
-                            "2": "2025-07-02 08:45:45",
-                            "3": "2025-07-02 08:45:45"
                         }
                     ],
                     "columns": [
@@ -501,9 +489,9 @@
                         }
                     ],
                     "executionInfo": {
-                        "text": "OK, 6 records retrieved in 1.644ms"
+                        "text": "OK, 4 records retrieved in 1.297ms"
                     },
-                    "totalRowCount": 6,
+                    "totalRowCount": 4,
                     "hasMoreRows": false,
                     "currentPage": 0,
                     "index": 0,
@@ -524,8 +512,8 @@
                         {
                             "type": 2,
                             "index": 0,
-                            "resultId": "d7cf94ec-0003-42a1-c1c8-08f250c394c3",
-                            "content": "OK, 2 rows affected in 12.781ms"
+                            "resultId": "82c1a460-0fc8-485b-b676-f8df7cd941f1",
+                            "content": "OK, 4 rows affected in 7.308ms"
                         }
                     ]
                 },
@@ -536,7 +524,7 @@
                         "delimiter": ";",
                         "span": {
                             "start": 0,
-                            "length": 57
+                            "length": 38
                         },
                         "contentStart": 1,
                         "state": 3
@@ -617,7 +605,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "47f375bf-7846-4bbe-e9b2-6a51c2b1553e"
+                        "ec205ea5-8d43-4f49-ca19-801cd686aca4"
                     ]
                 },
                 "currentHeight": 257.703125,
@@ -636,8 +624,8 @@
             },
             "data": [
                 {
-                    "tabId": "3e846d78-fc42-4b83-931e-501230f79c61",
-                    "resultId": "47f375bf-7846-4bbe-e9b2-6a51c2b1553e",
+                    "tabId": "bcbbf515-73c8-4988-9710-b6b008f77aed",
+                    "resultId": "ec205ea5-8d43-4f49-ca19-801cd686aca4",
                     "rows": [
                         {
                             "0": "id",
@@ -784,7 +772,7 @@
                         }
                     ],
                     "executionInfo": {
-                        "text": "OK, 5 records retrieved in 3.398ms"
+                        "text": "OK, 5 records retrieved in 3.477ms"
                     },
                     "totalRowCount": 5,
                     "hasMoreRows": false,
@@ -798,7 +786,185 @@
         {
             "state": {
                 "start": 11,
-                "end": 21,
+                "end": 11,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "ae7e6518-e096-4fb4-e15a-9e58ce86fe16"
+                    ]
+                },
+                "currentHeight": 36,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 22
+                        },
+                        "contentStart": 1,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "bcbbf515-73c8-4988-9710-b6b008f77aed",
+                    "resultId": "ae7e6518-e096-4fb4-e15a-9e58ce86fe16",
+                    "rows": [
+                        {
+                            "0": "id",
+                            "1": "int",
+                            "2": "NO",
+                            "3": "PRI",
+                            "4": null,
+                            "5": "auto_increment"
+                        },
+                        {
+                            "0": "title",
+                            "1": "varchar(255)",
+                            "2": "NO",
+                            "3": "",
+                            "4": "Новый диалог",
+                            "5": ""
+                        },
+                        {
+                            "0": "created_at",
+                            "1": "timestamp",
+                            "2": "YES",
+                            "3": "",
+                            "4": "CURRENT_TIMESTAMP",
+                            "5": "DEFAULT_GENERATED"
+                        },
+                        {
+                            "0": "updated_at",
+                            "1": "timestamp",
+                            "2": "YES",
+                            "3": "",
+                            "4": "CURRENT_TIMESTAMP",
+                            "5": "DEFAULT_GENERATED on update CURRENT_TIMESTAMP"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "Field",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "Type",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "Null",
+                            "field": "2",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "Key",
+                            "field": "3",
+                            "dataType": {
+                                "type": 43,
+                                "needsQuotes": true
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "Default",
+                            "field": "4",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "Extra",
+                            "field": "5",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 4 records retrieved in 3.031ms"
+                    },
+                    "totalRowCount": 4,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "DESCRIBE conversations",
+                    "updatable": false
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 12,
+                "end": 12,
                 "language": "mysql",
                 "currentSet": 1,
                 "statements": [
@@ -806,10 +972,10 @@
                         "delimiter": ";",
                         "span": {
                             "start": 0,
-                            "length": 10
+                            "length": 0
                         },
-                        "contentStart": -1,
-                        "state": 3
+                        "contentStart": 0,
+                        "state": 0
                     }
                 ]
             },
