@@ -16,7 +16,7 @@ def get_connection():
 
     return mysql.connector.connect(host=db_host, user=db_user, password=db_password, database=db_name)
 
-def dialog_list_request(dict_return : bool = False):
+def dialog_list_request(dict_return : bool = False) -> list:
     """
     @brief Получает и возвращает список всех доступных чатов
     @param dict_return Возвращать ли значение в виде словаря (в противном случае будет кортеж)
@@ -54,7 +54,7 @@ def add_new_dialog(dialog_name : str):
 def remove_dialog(dialog_id : int):
     """
     @brief Удаляет чаты с указанным id
-    @param id - ключ удалямых чатов
+    @param id ключ удалямых чатов
     """
     if isinstance(dialog_id, int):
         try:
@@ -69,11 +69,9 @@ def remove_dialog(dialog_id : int):
     else:
         raise TypeError("Id cannot be non integer or None")
 
-def message_list_request(conversation_id : int ):
-
+def message_list_request(conversation_id : int) -> list:
     """
-    @brief  Получить список всех сообщения по id чата
-    @param conn конектор между pythob и mysql
+    @brief Получить список всех сообщений по id чата
     @param conversation_id id диалога из которого нужно получить сообщения
     @returns список сообщений из чата
     """
@@ -93,10 +91,9 @@ def message_list_request(conversation_id : int ):
     
        
 def message_insert(*,conversation_id : int, is_user : bool, text : str ):
-
     """
     @brief Вставить сообщение в чат по id чата
-    @param conversation_id id диалога в который нужно вставить сообщения
+    @param conversation_id идентификатор диалога в который нужно вставить сообщения
     @param is_user если true то сообщение пользователя, если false то сообщение от ai
     @param text текст сообщения 
     """
@@ -118,14 +115,10 @@ def message_insert(*,conversation_id : int, is_user : bool, text : str ):
         raise TypeError("Params types is not match")
     
 
-def message_delete(*,id : int):
-
+def message_delete(id : int):
     """
     @brief Удалить сообщение по id в чате с conversation_id
-    @param id id - сообщения
-    @param conversation_id id диалога в который нужно вставить сообщения
-    
-    
+    @param id идентификатор сообщения   
     """
 
     if isinstance(id,int):

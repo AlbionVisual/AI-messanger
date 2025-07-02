@@ -81,6 +81,18 @@ from database import *
   ```python
   def remove_dialog(dialog_id : int) -> None
   ```
+- Получить список всех сообщений по id чата
+  ```python
+  def message_list_request(conversation_id : int) -> list
+  ```
+- Вставить сообщение в чат по id чата
+  ```python
+  def message_insert(*,conversation_id : int, is_user : bool, text : str) -> None
+  ```
+- Удалить сообщение по id в чате с conversation_id
+  ```python
+  def message_delete(*,id : int) -> None
+  ```
 
 ## Языки `SQL` для работы с таблицами и запросами
 
