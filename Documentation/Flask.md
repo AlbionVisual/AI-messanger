@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# Chejlkcdks
-=======
 # Работа с Flask
 
 ### Простейшее приложение на Flask
@@ -469,4 +466,3 @@ li {
   border-bottom: 1px solid #ddd;
 }
 ```
->>>>>>> flask_test
