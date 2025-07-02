@@ -2,7 +2,7 @@
     "type": "MySQLNotebook",
     "version": "1.0",
     "caption": "DB Notebook",
-    "content": "\\about\nUSE ai_chat_db\nSHOW TABLES\nDESCRIBE conversations\nINSERT INTO conversations (title) VALUES ('Первый диалог');\nINSERT INTO conversations (title) VALUES ('Второй диалог');\nSELECT * FROM conversations\nDELETE FROM conversations WHERE created_at > '2025-02-07'\n",
+    "content": "USE ai_chat_db\nSHOW TABLES\nDESCRIBE conversations\nINSERT INTO conversations (title) VALUES ('Первый диалог');\nINSERT INTO conversations (title) VALUES ('Второй диалог');\nSELECT * FROM conversations\nDELETE FROM conversations WHERE created_at > '2025-02-07'\nUPDATE conversations SET title = 'Не первый диалог' WHERE title = 'Первый диалог'\nUPDATE conversations SET title = 'Второй диалог' WHERE id = 6\nDESCRIBE messages\n\n\n\n\n\n\n\n\n\n\n",
     "options": {
         "tabSize": 4,
         "indentSize": 4,
@@ -15,22 +15,22 @@
             {
                 "inSelectionMode": false,
                 "selectionStart": {
-                    "lineNumber": 7,
-                    "column": 28
+                    "lineNumber": 14,
+                    "column": 1
                 },
                 "position": {
-                    "lineNumber": 7,
-                    "column": 28
+                    "lineNumber": 14,
+                    "column": 1
                 }
             }
         ],
         "viewState": {
             "scrollLeft": 0,
             "firstPosition": {
-                "lineNumber": 2,
+                "lineNumber": 7,
                 "column": 1
             },
-            "firstPositionDeltaTop": 67
+            "firstPositionDeltaTop": 239
         },
         "contributionsState": {
             "editor.contrib.folding": {},
@@ -48,44 +48,13 @@
                     "text": [
                         {
                             "type": 2,
-                            "content": "Welcome to the MySQL Shell - DB Notebook.\n\nPress Ctrl+Enter to execute the code block.\n\nExecute \\sql to switch to SQL, \\js to JavaScript and \\ts to TypeScript mode.\nExecute \\help or \\? for help;",
-                            "language": "ansi"
-                        }
-                    ]
-                },
-                "currentHeight": 167,
-                "currentSet": 1,
-                "statements": [
-                    {
-                        "delimiter": ";",
-                        "span": {
-                            "start": 0,
-                            "length": 6
-                        },
-                        "contentStart": 0,
-                        "state": 0
-                    }
-                ]
-            },
-            "data": []
-        },
-        {
-            "state": {
-                "start": 2,
-                "end": 2,
-                "language": "mysql",
-                "result": {
-                    "type": "text",
-                    "text": [
-                        {
-                            "type": 2,
                             "index": 0,
-                            "resultId": "33efd885-19c7-4b3f-ceff-3219408ad768",
-                            "content": "OK, 0 records retrieved in 2.159ms"
+                            "resultId": "54028634-6d3f-4711-e95f-39d953db92c9",
+                            "content": "OK, 0 records retrieved in 0.866ms"
                         }
                     ]
                 },
-                "currentHeight": 34.5,
+                "currentHeight": 28,
                 "currentSet": 1,
                 "statements": [
                     {
@@ -103,16 +72,16 @@
         },
         {
             "state": {
-                "start": 3,
-                "end": 3,
+                "start": 2,
+                "end": 2,
                 "language": "mysql",
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "84d196f6-4b9b-4515-cf8b-56b275b97281"
+                        "faaca1d4-9dea-4383-d7ff-70ad772b361b"
                     ]
                 },
-                "currentHeight": 141.28125,
+                "currentHeight": 36,
                 "currentSet": 1,
                 "statements": [
                     {
@@ -128,8 +97,8 @@
             },
             "data": [
                 {
-                    "tabId": "a7349881-4c94-4a47-e135-3ff3767bb726",
-                    "resultId": "84d196f6-4b9b-4515-cf8b-56b275b97281",
+                    "tabId": "3e846d78-fc42-4b83-931e-501230f79c61",
+                    "resultId": "faaca1d4-9dea-4383-d7ff-70ad772b361b",
                     "rows": [
                         {
                             "0": "conversations"
@@ -159,7 +128,7 @@
                         }
                     ],
                     "executionInfo": {
-                        "text": "OK, 2 records retrieved in 5.921ms"
+                        "text": "OK, 2 records retrieved in 4.084ms"
                     },
                     "totalRowCount": 2,
                     "hasMoreRows": false,
@@ -172,16 +141,16 @@
         },
         {
             "state": {
-                "start": 4,
-                "end": 4,
+                "start": 3,
+                "end": 3,
                 "language": "mysql",
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "305a87f7-cdb5-4eb9-f396-14f6ad9951d7"
+                        "9d4dbb46-1eef-402e-9f0d-facef961beb5"
                     ]
                 },
-                "currentHeight": 224.5625,
+                "currentHeight": 36,
                 "currentSet": 1,
                 "statements": [
                     {
@@ -197,8 +166,8 @@
             },
             "data": [
                 {
-                    "tabId": "a7349881-4c94-4a47-e135-3ff3767bb726",
-                    "resultId": "305a87f7-cdb5-4eb9-f396-14f6ad9951d7",
+                    "tabId": "3e846d78-fc42-4b83-931e-501230f79c61",
+                    "resultId": "9d4dbb46-1eef-402e-9f0d-facef961beb5",
                     "rows": [
                         {
                             "0": "id",
@@ -337,7 +306,7 @@
                         }
                     ],
                     "executionInfo": {
-                        "text": "OK, 4 records retrieved in 3.404ms"
+                        "text": "OK, 4 records retrieved in 2.146ms"
                     },
                     "totalRowCount": 4,
                     "hasMoreRows": false,
@@ -350,8 +319,8 @@
         },
         {
             "state": {
-                "start": 5,
-                "end": 6,
+                "start": 4,
+                "end": 5,
                 "language": "mysql",
                 "result": {
                     "type": "text",
@@ -370,7 +339,7 @@
                         }
                     ]
                 },
-                "currentHeight": 61,
+                "currentHeight": 28,
                 "currentSet": 1,
                 "statements": [
                     {
@@ -397,16 +366,16 @@
         },
         {
             "state": {
-                "start": 7,
-                "end": 7,
+                "start": 6,
+                "end": 6,
                 "language": "mysql",
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "c7f26691-085a-4c38-eb97-3559af6edbbd"
+                        "37d65979-7fca-4373-d227-54222f675d11"
                     ]
                 },
-                "currentHeight": 101.5,
+                "currentHeight": 273.84375,
                 "currentSet": 1,
                 "statements": [
                     {
@@ -422,9 +391,46 @@
             },
             "data": [
                 {
-                    "tabId": "a7349881-4c94-4a47-e135-3ff3767bb726",
-                    "resultId": "c7f26691-085a-4c38-eb97-3559af6edbbd",
-                    "rows": [],
+                    "tabId": "3e846d78-fc42-4b83-931e-501230f79c61",
+                    "resultId": "37d65979-7fca-4373-d227-54222f675d11",
+                    "rows": [
+                        {
+                            "0": 5,
+                            "1": "Не первый диалог",
+                            "2": "2025-07-02 02:39:26",
+                            "3": "2025-07-02 08:52:53"
+                        },
+                        {
+                            "0": 6,
+                            "1": "Второй диалог",
+                            "2": "2025-07-02 02:39:27",
+                            "3": "2025-07-02 08:53:45"
+                        },
+                        {
+                            "0": 7,
+                            "1": "Не первый диалог",
+                            "2": "2025-07-02 02:40:22",
+                            "3": "2025-07-02 08:52:53"
+                        },
+                        {
+                            "0": 8,
+                            "1": "Не второй диалог",
+                            "2": "2025-07-02 02:40:22",
+                            "3": "2025-07-02 02:41:56"
+                        },
+                        {
+                            "0": 10,
+                            "1": "Третий диалог",
+                            "2": "2025-07-02 08:45:29",
+                            "3": "2025-07-02 08:45:29"
+                        },
+                        {
+                            "0": 11,
+                            "1": "Третий диалог",
+                            "2": "2025-07-02 08:45:45",
+                            "3": "2025-07-02 08:45:45"
+                        }
+                    ],
                     "columns": [
                         {
                             "title": "id",
@@ -450,20 +456,15 @@
                             "title": "title",
                             "field": "1",
                             "dataType": {
-                                "type": 15,
+                                "type": 17,
                                 "characterMaximumLength": 65535,
                                 "flags": [
                                     "BINARY",
-                                    "UNICODE",
-                                    "ASCII"
+                                    "ASCII",
+                                    "UNICODE"
                                 ],
                                 "needsQuotes": true,
-                                "parameterFormatType": "One",
-                                "synonyms": [
-                                    "CHAR VARYING",
-                                    "CHARACTER VARYING",
-                                    "VARCHARACTER"
-                                ]
+                                "parameterFormatType": "OneOrZero"
                             },
                             "inPK": false,
                             "nullable": false,
@@ -475,7 +476,7 @@
                             "field": "2",
                             "dataType": {
                                 "type": 26,
-                                "dateTimePrecision": 4,
+                                "dateTimePrecision": 8,
                                 "needsQuotes": true,
                                 "parameterFormatType": "OneOrZero"
                             },
@@ -489,7 +490,7 @@
                             "field": "3",
                             "dataType": {
                                 "type": 26,
-                                "dateTimePrecision": 4,
+                                "dateTimePrecision": 8,
                                 "needsQuotes": true,
                                 "parameterFormatType": "OneOrZero"
                             },
@@ -500,9 +501,9 @@
                         }
                     ],
                     "executionInfo": {
-                        "text": "OK, 0 records retrieved in 2.069ms"
+                        "text": "OK, 6 records retrieved in 1.644ms"
                     },
-                    "totalRowCount": 0,
+                    "totalRowCount": 6,
                     "hasMoreRows": false,
                     "currentPage": 0,
                     "index": 0,
@@ -514,8 +515,8 @@
         },
         {
             "state": {
-                "start": 8,
-                "end": 8,
+                "start": 7,
+                "end": 7,
                 "language": "mysql",
                 "result": {
                     "type": "text",
@@ -546,8 +547,258 @@
         },
         {
             "state": {
+                "start": 8,
+                "end": 8,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 2,
+                            "index": 0,
+                            "resultId": "e84f497f-796d-431a-f53c-e7b38d9114f9",
+                            "content": "OK, 2 rows affected in 8.684ms"
+                        }
+                    ]
+                },
+                "currentHeight": 34.5,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 81
+                        },
+                        "contentStart": 0,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
                 "start": 9,
                 "end": 9,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 2,
+                            "index": 0,
+                            "resultId": "2e610c82-8a06-4141-f488-a13deae6d59e",
+                            "content": "OK, 1 row affected in 7.299ms"
+                        }
+                    ]
+                },
+                "currentHeight": 34.5,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 61
+                        },
+                        "contentStart": 0,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 10,
+                "end": 10,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "47f375bf-7846-4bbe-e9b2-6a51c2b1553e"
+                    ]
+                },
+                "currentHeight": 257.703125,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 17
+                        },
+                        "contentStart": 1,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "3e846d78-fc42-4b83-931e-501230f79c61",
+                    "resultId": "47f375bf-7846-4bbe-e9b2-6a51c2b1553e",
+                    "rows": [
+                        {
+                            "0": "id",
+                            "1": "int",
+                            "2": "NO",
+                            "3": "PRI",
+                            "4": null,
+                            "5": "auto_increment"
+                        },
+                        {
+                            "0": "conversation_id",
+                            "1": "int",
+                            "2": "NO",
+                            "3": "MUL",
+                            "4": null,
+                            "5": ""
+                        },
+                        {
+                            "0": "sender",
+                            "1": "enum('user','ai')",
+                            "2": "NO",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        },
+                        {
+                            "0": "content",
+                            "1": "text",
+                            "2": "NO",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        },
+                        {
+                            "0": "timestamp",
+                            "1": "timestamp",
+                            "2": "YES",
+                            "3": "",
+                            "4": "CURRENT_TIMESTAMP",
+                            "5": "DEFAULT_GENERATED"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "Field",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "Type",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "Null",
+                            "field": "2",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "Key",
+                            "field": "3",
+                            "dataType": {
+                                "type": 43,
+                                "needsQuotes": true
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "Default",
+                            "field": "4",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "Extra",
+                            "field": "5",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 5 records retrieved in 3.398ms"
+                    },
+                    "totalRowCount": 5,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "DESCRIBE messages",
+                    "updatable": false
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 11,
+                "end": 21,
                 "language": "mysql",
                 "currentSet": 1,
                 "statements": [
@@ -555,10 +806,10 @@
                         "delimiter": ";",
                         "span": {
                             "start": 0,
-                            "length": 0
+                            "length": 10
                         },
-                        "contentStart": 0,
-                        "state": 0
+                        "contentStart": -1,
+                        "state": 3
                     }
                 ]
             },
