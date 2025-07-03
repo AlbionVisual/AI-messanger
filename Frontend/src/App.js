@@ -101,11 +101,13 @@ const add_message = async (is_user) => {
       }
 
       const result = await response.json();
-      set_messages([...messages, result.message]);
-      set_message_text('');
+      set_messages((prev_messages) => [...prev_messages, result.message]);
+
       if (is_user) {
+        set_message_text('');
         await add_message(false);
       }
+
     } catch (error) {
       console.error('Ошибка:', error);
     }
