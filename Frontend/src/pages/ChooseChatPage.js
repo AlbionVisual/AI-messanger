@@ -9,7 +9,7 @@ function ChooseChatPage(props) {
       {chatList.map((key) => {
         return (
           <div key={key}>
-            {key == chosenChat ? (
+            {key === chosenChat ? (
               <h1>Элемент списка: {key}</h1>
             ) : (
               <h3>Элемент списка: {key}</h3>

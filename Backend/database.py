@@ -43,8 +43,10 @@ def add_new_dialog(dialog_name : str):
             conn = get_connection()
             cursor = conn.cursor()
             cursor.execute("INSERT INTO conversations (title) VALUES (%s)", (dialog_name,))
+            id = cursor.lastrowid
             conn.commit()
             cursor.close()
+            return id
         finally:
             if conn:
                 conn.close()
@@ -69,7 +71,7 @@ def remove_dialog(dialog_id : int):
     else:
         raise TypeError("Id cannot be non integer or None")
 
-def message_list_request(conversation_id : int ):
+def message_list_request(conversation_id : int, dict_return : bool = False ):
 
     """
     @brief  Получить список всех сообщения по id чата
@@ -81,7 +83,7 @@ def message_list_request(conversation_id : int ):
     if isinstance(conversation_id,int):
         try:
             conn = get_connection()
-            cursor = conn.cursor()
+            cursor = conn.cursor(dictionary=dict_return)
             cursor.execute("SELECT * FROM messages WHERE conversation_id = %s", (conversation_id,))
             ans = cursor.fetchall()
             return ans
@@ -92,7 +94,7 @@ def message_list_request(conversation_id : int ):
         raise TypeError("coversation_id should be integer")
     
        
-def message_insert(*,conversation_id : int, is_user : bool, text : str ):
+def message_insert(conversation_id : int, is_user : bool, text : str ):
 
     """
     @brief Вставить сообщение в чат по id чата
@@ -106,7 +108,10 @@ def message_insert(*,conversation_id : int, is_user : bool, text : str ):
             conn = get_connection()
             cursor = conn.cursor()
             cursor.execute("INSERT INTO messages (conversation_id, sender, content) VALUES (%s,%s,%s)", (conversation_id, 'user' if is_user else 'ai', text))
+            id = cursor.lastrowid
             conn.commit()
+            cursor.close()
+            return id
         except mysql.connector.Error as err:
             print("we have an error inserting to database" + str(err))
             conn.rollback()
@@ -118,7 +123,7 @@ def message_insert(*,conversation_id : int, is_user : bool, text : str ):
         raise TypeError("Params types is not match")
     
 
-def message_delete(*,id : int):
+def message_delete(id : int):
 
     """
     @brief Удалить сообщение по id в чате с conversation_id
@@ -128,12 +133,13 @@ def message_delete(*,id : int):
     
     """
 
-    if isinstance(id,int):
+    if isinstance(id, int):
         try:
             conn = get_connection()
             cursor = conn.cursor()
             cursor.execute("DELETE FROM messages WHERE id =  %s", (id,))
             conn.commit()
+
         except mysql.connector.Error as err:
             print("we have an error inserting to database" + str(err))
             conn.rollback()
@@ -147,6 +153,7 @@ def message_delete(*,id : int):
 
 
 if __name__ == "__main__":
+    #print(dialog_list_request(dict_return=True))
     lst = [(el['id'], el['title']) for el in dialog_list_request(dict_return=True)]
     print("Before modifying:\n" + '\n'.join([el[1] for el in lst]))
     print("Adding nth dialog...")
