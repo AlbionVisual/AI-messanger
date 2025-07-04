@@ -50,10 +50,20 @@ def query_openrouter(message : str, model_type = 'deepseek/deepseek-r1-0528-qwen
     )
     unicode_string = response.content.decode('utf-8')
     parsed_data = json.loads(unicode_string)
-    if parsed_data and parsed_data['choices'] and parsed_data['choices'][0] and parsed_data['choices'][0]['message']:
-        return parsed_data['choices'][0]['message']['content']
-    else:
-        return parsed_data
+    if parsed_data:
+        if  'choices' in parsed_data:
+            if  isinstance(parsed_data['choices'], list) and len(parsed_data['choices']) != 0:
+                if  'message' in parsed_data['choices'][0]:
+                    return parsed_data['choices'][0]['message']['content']
+                else:
+                    print('ususual data:', parsed_data['choices'][0])
+                    return parsed_data['choices'][0]
+            else:
+                print('ususual data:', parsed_data['choices'])
+                return parsed_data['choices']
+        else:
+            print('unusual data:',parsed_data)
+            return parsed_data
 
 if __name__ == "__main__":
     resp = query_openrouter("Привет! Как дела? Мне нужно проверить запрос по API ключу, надеюсь ты не против?\n\nЕсли тебе скучно можешь ответить на вопрос: что возвращает requests.Post, как получить ответ и какой он будет?")

@@ -77,7 +77,6 @@ def edit_dialog_name(dialog_id : int, new_dialog_name : str):
     @param dialog_id ключ чата, для изменения имени
     @param new_dialog_name новое имя для чата
     """
-    # UPDATE conversations SET title = 'Третий диалог' WHERE id = 22
     if isinstance(dialog_id, int) and isinstance(new_dialog_name, str) and new_dialog_name:
         try:
             conn = get_connection()
@@ -89,7 +88,7 @@ def edit_dialog_name(dialog_id : int, new_dialog_name : str):
             if conn:
                 conn.close()
     else:
-        raise TypeError("Id or new name cannot be other types nor None")
+        raise TypeError("Id or new name cannot be wrong types nor None")
 
 def message_list_request(conversation_id : int, dict_return : bool = False) -> list:
     """

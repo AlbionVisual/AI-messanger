@@ -6,8 +6,13 @@
 
 }
 
-.chat-item {
+.chat-item-list {
 
+}
+
+.chat-item {
+    display: flex;
+    justify-content: center;
 }
 
 .selected-chat {

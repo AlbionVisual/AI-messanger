@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ChangeableText from "./changable_text";
 import "./selector.css";
 
 function Selector(props) {
@@ -65,6 +66,32 @@ function Selector(props) {
     }
   };
 
+  const handle_end_change = async (id, new_name) => {
+    const request = {
+      content: new_name,
+    };
+    const response = await fetch(`http://127.0.0.1:5000/api/chats/${id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(request),
+    });
+
+    if (!response.ok) {
+      throw new Error("Ошибка при изменении имени чата");
+    } else {
+      set_chats(
+        chats.map((chat) => {
+          if (chat.id == id) {
+            chat.title = new_name;
+          }
+          return chat;
+        })
+      );
+    }
+  };
+
   return (
     <div className="chat-selector">
       <ul className="chat-list">
@@ -72,20 +99,27 @@ function Selector(props) {
         {chats.map((chats) => (
           <li
             key={chats.id}
-            className={`chat-item ${
+            className={`chat-item-list ${
               selected_chat_id === chats.id ? "selected-chat" : ""
             }`}
             onClick={() => change_selected_chat_id(chats.id)}>
-            <button onClick={() => change_selected_chat_id(chats.id)}>
-              Выбрать
-            </button>
-            <span className="chat-name"> {chats.title}</span>
+            <div className="chat-item">
+              <button onClick={() => change_selected_chat_id(chats.id)}>
+                Выбрать
+              </button>
+              <ChangeableText
+                className="chat-name"
+                initial_value={chats.title}
+                end_change={(new_val) => {
+                  handle_end_change(chats.id, new_val);
+                }}></ChangeableText>
 
-            <button
-              onClick={() => delete_chat(chats.id)}
-              className="chat-delete-button">
-              Удалить
-            </button>
+              <button
+                onClick={() => delete_chat(chats.id)}
+                className="chat-delete-button">
+                Удалить
+              </button>
+            </div>
           </li>
         ))}
       </ul>

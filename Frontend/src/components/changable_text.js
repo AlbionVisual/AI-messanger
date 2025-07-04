@@ -1,28 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef } from "react";
 import "./changable_text.css";
 
 function ChangeableText(props) {
-  const [field_value, set_field_value] = useState(props.value);
+  const { initial_value, hangle_change, edit_content, style } = props;
 
-  const edit_content = (new_content) => {
-    if (props.end_change) props.end_change(new_content);
+  const editableDivRef = useRef(null);
+
+  useEffect(() => {
+    if (
+      editableDivRef.current &&
+      editableDivRef.current.textContent !== initial_value
+    ) {
+      editableDivRef.current.textContent = initial_value;
+    }
+  }, [initial_value]);
+
+  const handleInput = (e) => {
+    const newContent = e.target.textContent;
+    if (hangle_change) {
+      hangle_change(newContent);
+    }
   };
-  const hangle_change = (new_content) => {
-    if (props.handle_change) props.handle_change(new_content);
+
+  const handleBlur = (e) => {
+    const finalContent = e.target.textContent;
+    if (edit_content) {
+      edit_content(finalContent);
+    }
   };
 
   return (
     <div className="editable-field">
-      <input
+      <div
+        ref={editableDivRef}
         className="changable-text"
-        type="text"
-        value={field_value}
-        style={props.style}
-        onChange={(e) => {
-          hangle_change(e.target.value);
-          set_field_value(e.target.value);
-        }}
-        onBlur={(e) => edit_content(e.target.value)}
+        style={style}
+        onInput={handleInput}
+        onBlur={handleBlur}
+        contentEditable="true"
       />
     </div>
   );

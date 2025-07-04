@@ -139,7 +139,7 @@ function Chat(props) {
                   end_change={(new_value) =>
                     edit_message(message.id, new_value)
                   }
-                  value={message.content}></ChangeableText>
+                  initial_value={message.content}></ChangeableText>
                 <button
                   onClick={() => delete_message(message.id)}
                   className="delete-button">
