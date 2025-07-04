@@ -1,0 +1,125 @@
+import React, { useState, useEffect } from "react";
+import "./chat.css";
+
+function Chat(props) {
+  const [messages, set_messages] = useState([]);
+  const [message_text, set_message_text] = useState("");
+
+  useEffect(() => {
+    show_messages(props.chat_id);
+  }, [props]);
+
+  const show_messages = async (chat_id) => {
+    try {
+      if (!chat_id) throw new Error("Нету ChatId");
+      const response = await fetch(
+        `http://127.0.0.1:5000/api/messages/${chat_id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Ошибка при загрузке сообщений");
+      }
+      const result = await response.json();
+      set_messages(result);
+    } catch (error) {
+      console.error("Ошибка:", error);
+    }
+  };
+
+  const add_message = async (is_user) => {
+    try {
+      const new_message = {
+        chat_id: props.chat_id,
+        text: message_text,
+        sender: is_user,
+      };
+
+      const response = await fetch("http://127.0.0.1:5000/api/messages", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(new_message),
+      });
+
+      if (!response.ok) {
+        throw new Error("Ошибка при добавлении сообщения");
+      }
+
+      const result = await response.json();
+      set_messages((prev_messages) => [...prev_messages, result.message]);
+
+      if (is_user) {
+        set_message_text("");
+        await add_message(false);
+      }
+    } catch (error) {
+      console.error("Ошибка:", error);
+    }
+  };
+
+  const delete_message = async (id) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:5000/api/messages/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (!response.ok) {
+        throw new Error("Ошибка при удалении сообщения");
+      }
+      set_messages(messages.filter((message) => message.id !== id));
+    } catch (error) {
+      console.error("Ошибка:", error);
+    }
+  };
+
+  return (
+    <div className="chat">
+      {props.chat_id && (
+        <div className="chat-section">
+          <h2>Сообщения</h2>
+          <div className="message-input">
+            <input
+              type="text"
+              value={message_text}
+              onChange={(e) => set_message_text(e.target.value)}
+              placeholder="Напишите сообщение..."
+            />
+            <button
+              onClick={() => {
+                add_message(true);
+              }}>
+              Отправить
+            </button>
+          </div>
+
+          <ul className="message-list">
+            {messages.map((message) => (
+              <li key={message.id} className="message">
+                <span
+                  style={{ float: message.is_user ? "right" : "left" }}
+                  className="message-text">
+                  {message.content}
+                </span>
+                <button
+                  onClick={() => delete_message(message.id)}
+                  className="delete-button">
+                  Удалить
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default Chat;

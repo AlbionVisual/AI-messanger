@@ -1,0 +1,106 @@
+import React, { useState, useEffect } from "react";
+import "./selector.css";
+
+function Selector(props) {
+  const [chats, set_chats] = useState([]);
+  const [chat_name, set_chat_name] = useState("");
+  const [selected_chat_id, set_selected_chat_id] = useState(null);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:5000/api/chats")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Ошибка при загрузке данных");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        set_chats(data);
+        data && data[0] && data[0].id && change_selected_chat_id(data[0].id);
+      })
+      .catch((error) => console.error("Ошибка:", error));
+  }, []);
+
+  const change_selected_chat_id = (new_id) => {
+    props.onChatChange && props.onChatChange(new_id);
+    props.onChatChange && set_selected_chat_id(new_id);
+  };
+
+  const add_chat = async () => {
+    const new_chat = { chat_name };
+
+    try {
+      const response = await fetch("http://127.0.0.1:5000/api/chats", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(new_chat),
+      });
+      if (!response.ok) {
+        throw new Error("Ошибка при добавлении чата");
+      }
+      const result = await response.json();
+      set_chats([...chats, result.chat]);
+      set_chat_name("");
+    } catch (error) {
+      console.error("Ошибка:", error);
+    }
+  };
+
+  const delete_chat = async (id) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:5000/api/chats/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (!response.ok) {
+        throw new Error("Ошибка при удалении чата");
+      }
+      set_chats(chats.filter((chat) => chat.id !== id)); // Удаляем чат из состояния
+    } catch (error) {
+      console.error("Ошибка:", error);
+    }
+  };
+
+  return (
+    <div className="chat-selector">
+      <ul className="chat-list">
+        <h2>Чаты</h2>
+        {chats.map((chats) => (
+          <li
+            key={chats.id}
+            className={`chat-item ${
+              selected_chat_id === chats.id ? "selected-chat" : ""
+            }`}
+            onClick={() => change_selected_chat_id(chats.id)}>
+            <button onClick={() => change_selected_chat_id(chats.id)}>
+              Выбрать
+            </button>
+            <span className="chat-name"> {chats.title}</span>
+
+            <button
+              onClick={() => delete_chat(chats.id)}
+              className="chat-delete-button">
+              Удалить
+            </button>
+          </li>
+        ))}
+      </ul>
+
+      <div className="chat-input">
+        <input
+          type="text"
+          value={chat_name}
+          onChange={(e) => set_chat_name(e.target.value)}
+          placeholder="Напишите название чата..."
+        />
+        <button onClick={add_chat}>Добавить</button>
+      </div>
+    </div>
+  );
+}
+
+export default Selector;
