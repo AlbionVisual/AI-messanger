@@ -98,7 +98,7 @@ function Chat(props) {
     } else {
       set_messages(
         messages.map((message) => {
-          if (message.id == id) {
+          if (message.id === id) {
             return {
               id: message.id,
               content: value,
@@ -121,6 +121,12 @@ function Chat(props) {
               value={message_text}
               onChange={(e) => set_message_text(e.target.value)}
               placeholder="Напишите сообщение..."
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  add_message(true);
+                }
+              }}
             />
             <button
               onClick={() => {

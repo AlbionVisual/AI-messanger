@@ -83,7 +83,7 @@ function Selector(props) {
     } else {
       set_chats(
         chats.map((chat) => {
-          if (chat.id == id) {
+          if (chat.id === id) {
             chat.title = new_name;
           }
           return chat;
@@ -130,6 +130,12 @@ function Selector(props) {
           value={chat_name}
           onChange={(e) => set_chat_name(e.target.value)}
           placeholder="Напишите название чата..."
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              add_chat(e);
+            }
+          }}
         />
         <button onClick={add_chat}>Добавить</button>
       </div>
