@@ -14,7 +14,6 @@ def get_dialogs():
 @app.route('/api/chats', methods=['POST'])
 def add_chat():
     data = request.get_json()
-    print(data)
     if not data:
         return jsonify({"error": "Название чата не введено"})
     id = add_new_dialog(data['chat_name'])
