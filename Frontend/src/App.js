@@ -155,6 +155,12 @@ const add_message = async (is_user) => {
             value={chat_name}
             onChange={(e) => set_chat_name(e.target.value)}
             placeholder="Напишите название чата..."
+            onKeyPress ={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                      add_chat();
+                    }
+                  }}
           />
           <button onClick={add_chat}>Добавить</button>
         </div>
@@ -168,6 +174,12 @@ const add_message = async (is_user) => {
               value={message_text}
               onChange={(e) => set_message_text(e.target.value)}
               placeholder="Напишите сообщение..."
+              onKeyPress ={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                      add_message(true);
+                    }
+                  }}
             />
             <button onClick={() => {add_message(true)}}>Отправить</button>
             
