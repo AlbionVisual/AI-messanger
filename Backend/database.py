@@ -70,6 +70,26 @@ def remove_dialog(dialog_id : int):
                 conn.close()
     else:
         raise TypeError("Id cannot be non integer or None")
+    
+def edit_dialog_name(dialog_id : int, new_dialog_name : str):
+    """
+    @brief Изменяет имя на новое для чата с указанным идентификатором
+    @param dialog_id ключ чата, для изменения имени
+    @param new_dialog_name новое имя для чата
+    """
+    # UPDATE conversations SET title = 'Третий диалог' WHERE id = 22
+    if isinstance(dialog_id, int) and isinstance(new_dialog_name, str) and new_dialog_name:
+        try:
+            conn = get_connection()
+            cursor = conn.cursor()
+            cursor.execute("UPDATE conversations SET title = %s WHERE id = %s", (new_dialog_name, dialog_id))
+            conn.commit()
+            cursor.close()
+        finally:
+            if conn:
+                conn.close()
+    else:
+        raise TypeError("Id or new name cannot be other types nor None")
 
 def message_list_request(conversation_id : int, dict_return : bool = False) -> list:
     """
@@ -143,17 +163,37 @@ def message_delete(id : int):
     else: 
         raise TypeError("id should be integer")
 
-
+def edit_message_request(message_id : int, new_message : str):
+    """
+    @brief Изменяет имя на новое для чата с указанным идентификатором
+    @param message_id ключ чата, для изменения имени
+    @param new_message новый текст сообщения
+    """
+    # UPDATE conversations SET title = 'Третий диалог' WHERE id = 22
+    if isinstance(message_id, int) and isinstance(new_message, str) and new_message:
+        try:
+            conn = get_connection()
+            cursor = conn.cursor()
+            cursor.execute("UPDATE messages SET content = %s WHERE id = %s", (new_message, message_id))
+            conn.commit()
+            cursor.close()
+        finally:
+            if conn:
+                conn.close()
+    else:
+        raise TypeError("Id or new name cannot be other types nor None")
 
 if __name__ == "__main__":
+    edit_message_request(6, "Третий диалог")
+    print(message_list_request(22))
     #print(dialog_list_request(dict_return=True))
-    lst = [(el['id'], el['title']) for el in dialog_list_request(dict_return=True)]
-    print("Before modifying:\n" + '\n'.join([el[1] for el in lst]))
-    print("Adding nth dialog...")
-    add_new_dialog("nth dialog")
-    lst = [(el['id'], el['title']) for el in dialog_list_request(dict_return=True)]
-    print("After first modifying:\n" + '\n'.join([el[1] for el in lst]))
-    print("Removing last...")
-    remove_dialog(int(lst[-1][0]))
-    lst = [(el['id'], el['title']) for el in dialog_list_request(dict_return=True)]
-    print("After second modifying:\n" + '\n'.join([el[1] for el in lst]))
+    # lst = [(el['id'], el['title']) for el in dialog_list_request(dict_return=True)]
+    # print("Before modifying:\n" + '\n'.join([el[1] for el in lst]))
+    # print("Adding nth dialog...")
+    # add_new_dialog("nth dialog")
+    # lst = [(el['id'], el['title']) for el in dialog_list_request(dict_return=True)]
+    # print("After first modifying:\n" + '\n'.join([el[1] for el in lst]))
+    # print("Removing last...")
+    # remove_dialog(int(lst[-1][0]))
+    # lst = [(el['id'], el['title']) for el in dialog_list_request(dict_return=True)]
+    # print("After second modifying:\n" + '\n'.join([el[1] for el in lst]))

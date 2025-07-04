@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ChangeableText from "./changable_text";
 import "./chat.css";
 
 function Chat(props) {
@@ -35,7 +36,7 @@ function Chat(props) {
     try {
       const new_message = {
         chat_id: props.chat_id,
-        text: message_text,
+        content: message_text,
         sender: is_user,
       };
 
@@ -80,6 +81,35 @@ function Chat(props) {
     }
   };
 
+  const edit_message = async (id, value) => {
+    const new_message = {
+      content: value,
+    };
+    const response = await fetch(`http://127.0.0.1:5000/api/messages/${id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(new_message),
+    });
+
+    if (!response.ok) {
+      throw new Error("Ошибка при изменении сообщения");
+    } else {
+      set_messages(
+        messages.map((message) => {
+          if (message.id == id) {
+            return {
+              id: message.id,
+              content: value,
+              sender: message.sender,
+            };
+          } else return message;
+        })
+      );
+    }
+  };
+
   return (
     <div className="chat">
       {props.chat_id && (
@@ -103,11 +133,13 @@ function Chat(props) {
           <ul className="message-list">
             {messages.map((message) => (
               <li key={message.id} className="message">
-                <span
-                  style={{ float: message.is_user ? "right" : "left" }}
-                  className="message-text">
-                  {message.content}
-                </span>
+                <ChangeableText
+                  style={{ float: message.sender ? "right" : "left" }}
+                  className="message-text"
+                  end_change={(new_value) =>
+                    edit_message(message.id, new_value)
+                  }
+                  value={message.content}></ChangeableText>
                 <button
                   onClick={() => delete_message(message.id)}
                   className="delete-button">

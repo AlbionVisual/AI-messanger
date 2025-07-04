@@ -40,11 +40,11 @@ def add_message():
         return jsonify({"error": "Название сообщение не введено"})
     
     if data['sender']:
-        id = message_insert(data['chat_id'], data['sender'], data['text'])
-        return jsonify({'message': {'id': id,'content': data['text'], 'sender': True, 'conversation_id': data['chat_id']}})
+        id = message_insert(data['chat_id'], data['sender'], data['content'])
+        return jsonify({'message': {'id': id,'content': data['content'], 'sender': True, 'conversation_id': data['chat_id']}})
     
     else:
-        ai_answer = query_openrouter(data['text'])
+        ai_answer = query_openrouter(data['content'])
         id = message_insert(data['chat_id'], False, ai_answer)
         return jsonify({'message': {'id': id,'content': ai_answer, 'sender': False, 'conversation_id': data['chat_id']}})
 
@@ -53,6 +53,16 @@ def add_message():
 def delete_message(id):
     message_delete(id)
     return jsonify({"message": "Сообщение удалено"})
+
+@app.route('/api/messages/<int:id>', methods=['POST'])  
+def edit_message(id):
+    data = request.get_json()
+    if not data:
+        return jsonify({"error": "Изменённое сообщение не введено"})
+    if 'content' in data:
+        edit_message_request(id, data['content'])
+        return jsonify({"message": "Сообщение отредактировано"})
+    else: return jsonify({"message": "Не вижу 'content'"})
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
