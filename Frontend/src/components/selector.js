@@ -7,7 +7,7 @@ function Selector(props) {
   const [chat_name, set_chat_name] = useState("");
   const [selected_chat_id, set_selected_chat_id] = useState(null);
 
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [sidebar_open, set_sidebar_open] = useState(false);
 
   useEffect(() => {
     fetch("http://127.0.0.1:5000/api/chats")
@@ -29,8 +29,8 @@ function Selector(props) {
     props.onChatChange && set_selected_chat_id(new_id);
   };
 
-  const toggleSidebar = () => {
-      setIsSidebarOpen(!isSidebarOpen);
+  const toggle_Sidebar = () => {
+      set_sidebar_open(!sidebar_open);
   };
       
   const add_chat = async () => {
@@ -103,11 +103,11 @@ function Selector(props) {
       
      <button
         className="menu-toggle"
-        onClick={toggleSidebar}
+        onClick={toggle_Sidebar}
       >
-        ☰ 
+        {sidebar_open ? '✖' : '☰ '}
       </button>
-      <div className={`sidebar ${isSidebarOpen ? "open" : "hidden"}`}>
+      <div className={`sidebar ${sidebar_open ? "open" : "hidden"}`}>
         <div className="sidebar-header">
           <div className="chat-list">
           <h2>Чаты</h2>
@@ -148,9 +148,9 @@ function Selector(props) {
             }
           }}
         />
-        
+       <button className="input-button" onClick={add_chat}>Добавить</button>
       </div>
-      <button className="input-button" onClick={add_chat}>Добавить</button>
+       
       </div>
         </div>
         

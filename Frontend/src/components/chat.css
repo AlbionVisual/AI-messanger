@@ -1,19 +1,111 @@
+
+.chat {
+    flex-direction: column;
+    height: 100vh;
+}
+
+
 .chat-section {
+    margin-left: 60px;
+    flex-direction: column;
+    padding: 1rem; 
 
+    padding-bottom: 0; 
 }
 
-.message-input {
-
-}
 
 .message-list {
+    overflow-y: auto;
+    flex-direction: column;
+    padding-bottom: 5rem; 
+}
+
+.message {
+    margin-bottom: 15px;
+    display: flex;
+    width: 100%;
+}
+
+.message.user {
+    justify-content: flex-end;
+}
+
+.message.ai {
+    justify-content: flex-start;
+}
+
+
+.message > div {
+    max-width: 50%;
+    padding: 0.75rem;
+    border-radius: 0.5rem; 
+}
+
+
+.message.user > div {
+    background-color: #798782; 
+    color: white; 
     
 }
+
+
+.message.ai > div {
+    background-color: #e5e7eb;
+    color: black;
+
+}
+
 
 .message-text {
+    word-break: break-word;
 
 }
 
+
 .delete-button {
-    
+    font-size: 20px; 
+    margin-top: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+}
+
+.delete-button:hover {
+    color: #dc2626; 
+}
+
+
+.message-input {
+    margin-left: 60px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem; 
+    background-color: #f3f4f6;
+    border-top: 1px solid #d1d5db; 
+}
+
+.message-input input {
+    flex: 1;
+    padding: 0.5rem; 
+    border: 1px solid #d1d5db; 
+    border-radius: 0.375rem;
+    outline: none;
+}
+
+.message-input button {
+    padding: 0.5rem 1rem; 
+    background-color: #7ba283; 
+    color: white; 
+    border: none;
+    border-radius: 0.375rem; 
+    cursor: pointer;
+}
+
+.message-input button:hover {
+    background-color: #617765; 
 }

@@ -115,6 +115,26 @@ function Chat(props) {
       {props.chat_id && (
         <div className="chat-section">
           <h2>Сообщения</h2>
+          
+
+          <div className="message-list">
+            {messages.map((message) => (
+              <div key={message.id} className={`message ${message.sender === "user"? "user" : "ai"}`}>
+                <ChangeableText
+
+                  className="message-text"
+                  end_change={(new_value) =>
+                    edit_message(message.id, new_value)
+                  }
+                  initial_value={message.content}></ChangeableText>
+                <button
+                  onClick={() => delete_message(message.id)}
+                  className="delete-button">
+                  ✕ 
+                </button>
+              </div>
+            ))}
+          </div>
           <div className="message-input">
             <input
               type="text"
@@ -135,25 +155,6 @@ function Chat(props) {
               Отправить
             </button>
           </div>
-
-          <ul className="message-list">
-            {messages.map((message) => (
-              <li key={message.id} className="message">
-                <ChangeableText
-                  style={{ float: message.sender ? "right" : "left" }}
-                  className="message-text"
-                  end_change={(new_value) =>
-                    edit_message(message.id, new_value)
-                  }
-                  initial_value={message.content}></ChangeableText>
-                <button
-                  onClick={() => delete_message(message.id)}
-                  className="delete-button">
-                  Удалить
-                </button>
-              </li>
-            ))}
-          </ul>
         </div>
       )}
     </div>
