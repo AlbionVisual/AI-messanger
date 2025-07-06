@@ -64,12 +64,12 @@ def add_message():
     
     if data['sender']:
         id = message_insert(data['chat_id'], data['sender'], data['content'])
-        return jsonify({'message': {'id': id,'content': data['content'], 'sender': 'user', 'conversation_id': data['chat_id']}})
+        return jsonify({'message': {'id': id,'content': data['content'], 'sender': True, 'conversation_id': data['chat_id']}})
     
     else:
         ai_answer = query_openrouter(data['content'],active_model)
         id = message_insert(data['chat_id'], False, ai_answer)
-        return jsonify({'message': {'id': id,'content': ai_answer, 'sender': 'ai', 'conversation_id': data['chat_id']}})
+        return jsonify({'message': {'id': id,'content': ai_answer, 'sender': False, 'conversation_id': data['chat_id']}})
 
 
 @app.route('/api/messages/<int:id>', methods=['DELETE'])  
