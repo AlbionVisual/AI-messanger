@@ -7,6 +7,8 @@ function Selector(props) {
   const [chat_name, set_chat_name] = useState("");
   const [selected_chat_id, set_selected_chat_id] = useState(null);
 
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   useEffect(() => {
     fetch("http://127.0.0.1:5000/api/chats")
       .then((response) => {
@@ -27,6 +29,10 @@ function Selector(props) {
     props.onChatChange && set_selected_chat_id(new_id);
   };
 
+  const toggleSidebar = () => {
+      setIsSidebarOpen(!isSidebarOpen);
+  };
+      
   const add_chat = async () => {
     const new_chat = { chat_name };
 
@@ -94,36 +100,41 @@ function Selector(props) {
 
   return (
     <div className="chat-selector">
-      <ul className="chat-list">
-        <h2>Чаты</h2>
-        {chats.map((chats) => (
-          <li
-            key={chats.id}
-            className={`chat-item-list ${
-              selected_chat_id === chats.id ? "selected-chat" : ""
-            }`}
-            onClick={() => change_selected_chat_id(chats.id)}>
-            <div className="chat-item">
-              <button onClick={() => change_selected_chat_id(chats.id)}>
-                Выбрать
-              </button>
-              <ChangeableText
-                className="chat-name"
-                initial_value={chats.title}
-                end_change={(new_val) => {
-                  handle_end_change(chats.id, new_val);
-                }}></ChangeableText>
+      
+     <button
+        className="menu-toggle"
+        onClick={toggleSidebar}
+      >
+        ☰ 
+      </button>
+      <div className={`sidebar ${isSidebarOpen ? "open" : "hidden"}`}>
+        <div className="sidebar-header">
+          <div className="chat-list">
+          <h2>Чаты</h2>
+          {chats.map((chats) => (
+            <div
+              key={chats.id}
+              className={`chat-item-list ${
+                selected_chat_id === chats.id ? "selected-chat" : ""
+              }`}
+              onClick={() => change_selected_chat_id(chats.id)}>
+              <div className="chat-item">
+              
+                <ChangeableText
+                  className="chat-name"
+                  initial_value={chats.title}
+                  end_change={(new_val) => {
+                    handle_end_change(chats.id, new_val);
+                  }}></ChangeableText>
 
-              <button
-                onClick={() => delete_chat(chats.id)}
-                className="chat-delete-button">
-                Удалить
-              </button>
-            </div>
-          </li>
+                <button
+                  onClick={() => delete_chat(chats.id)}
+                  className="chat-delete-button">
+                  Удалить
+                </button>
+              </div>
+          </div>
         ))}
-      </ul>
-
       <div className="chat-input">
         <input
           type="text"
@@ -137,8 +148,14 @@ function Selector(props) {
             }
           }}
         />
-        <button onClick={add_chat}>Добавить</button>
+        
       </div>
+      <button className="input-button" onClick={add_chat}>Добавить</button>
+      </div>
+        </div>
+        
+    </div>
+      
     </div>
   );
 }

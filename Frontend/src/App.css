@@ -1,4 +1,9 @@
 .App {
   text-align: center;
-  padding: 20px;
+  padding: 0px;
+  display: flex;
+}
+
+.html{
+  background-color: antiquewhite;
 }
