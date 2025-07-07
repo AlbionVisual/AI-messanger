@@ -30,9 +30,9 @@ function Selector(props) {
   };
 
   const toggle_Sidebar = () => {
-      set_sidebar_open(!sidebar_open);
+    set_sidebar_open(!sidebar_open);
   };
-      
+
   const add_chat = async () => {
     const new_chat = { chat_name };
 
@@ -100,62 +100,57 @@ function Selector(props) {
 
   return (
     <div className="chat-selector">
-      
-     <button
-        className="menu-toggle"
-        onClick={toggle_Sidebar}
-      >
-        {sidebar_open ? '✖' : '☰ '}
-      </button>
-      <div className={`sidebar ${sidebar_open ? "open" : "hidden"}`}>
+      <button className="menu-toggle">{sidebar_open ? "✖" : "☰ "}</button>
+      <div
+        className={`sidebar ${sidebar_open ? "open" : "hidden"}`}
+        onMouseEnter={toggle_Sidebar}
+        onMouseLeave={toggle_Sidebar}>
         <div className="sidebar-header">
           <div className="chat-list">
-          <h2>Чаты</h2>
-          {chats.map((chats) => (
-            <div
-              key={chats.id}
-              className={`chat-item-list ${
-                selected_chat_id === chats.id ? "selected-chat" : ""
-              }`}
-              onClick={() => change_selected_chat_id(chats.id)}>
-              <div className="chat-item">
-              
-                <ChangeableText
-                  className="chat-name"
-                  initial_value={chats.title}
-                  end_change={(new_val) => {
-                    handle_end_change(chats.id, new_val);
-                  }}></ChangeableText>
+            <h2>Чаты</h2>
+            {chats.map((chats) => (
+              <div
+                key={chats.id}
+                className={`chat-item-list ${
+                  selected_chat_id === chats.id ? "selected-chat" : ""
+                }`}
+                onClick={() => change_selected_chat_id(chats.id)}>
+                <div className="chat-item">
+                  <ChangeableText
+                    className="chat-name"
+                    initial_value={chats.title}
+                    edit_content={(new_val) => {
+                      handle_end_change(chats.id, new_val);
+                    }}></ChangeableText>
 
-                <button
-                  onClick={() => delete_chat(chats.id)}
-                  className="chat-delete-button">
-                  Удалить
-                </button>
+                  <button
+                    onClick={() => delete_chat(chats.id)}
+                    className="chat-delete-button">
+                    Удалить
+                  </button>
+                </div>
               </div>
+            ))}
+            <div className="chat-input">
+              <input
+                type="text"
+                value={chat_name}
+                onChange={(e) => set_chat_name(e.target.value)}
+                placeholder="Напишите название чата..."
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") {
+                    e.preventDefault();
+                    add_chat(e);
+                  }
+                }}
+              />
+              <button className="input-button" onClick={add_chat}>
+                Добавить
+              </button>
+            </div>
           </div>
-        ))}
-      <div className="chat-input">
-        <input
-          type="text"
-          value={chat_name}
-          onChange={(e) => set_chat_name(e.target.value)}
-          placeholder="Напишите название чата..."
-          onKeyPress={(e) => {
-            if (e.key === "Enter") {
-              e.preventDefault();
-              add_chat(e);
-            }
-          }}
-        />
-       <button className="input-button" onClick={add_chat}>Добавить</button>
-      </div>
-       
-      </div>
         </div>
-        
-    </div>
-      
+      </div>
     </div>
   );
 }

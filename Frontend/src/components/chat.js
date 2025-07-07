@@ -7,7 +7,9 @@ function Chat(props) {
   const [message_text, set_message_text] = useState("");
 
   useEffect(() => {
-    show_messages(props.chat_id);
+    if (props.chat_id && typeof props.chat_id === "number") {
+      show_messages(props.chat_id);
+    }
   }, [props]);
 
   const show_messages = async (chat_id) => {
@@ -82,6 +84,10 @@ function Chat(props) {
   };
 
   const edit_message = async (id, value) => {
+    if (value === "") {
+      throw new Error("Нету нового текста");
+      return;
+    }
     const new_message = {
       content: value,
     };
@@ -115,22 +121,24 @@ function Chat(props) {
       {props.chat_id && (
         <div className="chat-section">
           <h2>Сообщения</h2>
-          
 
           <div className="message-list">
             {messages.map((message) => (
-              <div key={message.id} className={`message ${message.sender === "user"? "user" : "ai"}`}>
+              <div
+                key={message.id}
+                className={`message ${
+                  message.sender === "user" ? "user" : "ai"
+                }`}>
                 <ChangeableText
-
                   className="message-text"
-                  end_change={(new_value) =>
+                  edit_content={(new_value) =>
                     edit_message(message.id, new_value)
                   }
                   initial_value={message.content}></ChangeableText>
                 <button
                   onClick={() => delete_message(message.id)}
                   className="delete-button">
-                  ✕ 
+                  ✕
                 </button>
               </div>
             ))}

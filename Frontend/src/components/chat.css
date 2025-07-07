@@ -28,6 +28,7 @@
 
 .message.user {
     justify-content: flex-end;
+    text-align: right;
 }
 
 .message.ai {
@@ -36,7 +37,7 @@
 
 
 .message > div {
-    max-width: 50%;
+    max-width: 80%;
     padding: 0.75rem;
     border-radius: 0.5rem; 
 }

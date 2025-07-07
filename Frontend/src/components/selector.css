@@ -104,8 +104,9 @@
     border: none;
     padding: 10px;
     border-radius: 5px;
-    cursor: pointer;
+    /* cursor: pointer; */
     z-index: 1001;
+    pointer-events: none;
 }
 
 .menu-toggle:hover {
