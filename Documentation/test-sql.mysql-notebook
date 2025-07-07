@@ -15,12 +15,12 @@
             {
                 "inSelectionMode": false,
                 "selectionStart": {
-                    "lineNumber": 13,
-                    "column": 1
+                    "lineNumber": 12,
+                    "column": 23
                 },
                 "position": {
-                    "lineNumber": 13,
-                    "column": 1
+                    "lineNumber": 12,
+                    "column": 23
                 }
             }
         ],
@@ -30,7 +30,7 @@
                 "lineNumber": 11,
                 "column": 1
             },
-            "firstPositionDeltaTop": -9
+            "firstPositionDeltaTop": 51
         },
         "contributionsState": {
             "editor.contrib.folding": {},
@@ -49,8 +49,8 @@
                         {
                             "type": 2,
                             "index": 0,
-                            "resultId": "735f5773-eb90-4865-9c22-5d0518c0ff95",
-                            "content": "OK, 0 records retrieved in 2.731ms"
+                            "resultId": "518f6485-7512-4479-9b58-f889aadb1c11",
+                            "content": "OK, 0 records retrieved in 0.655ms"
                         }
                     ]
                 },
@@ -78,7 +78,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "b694ce04-bcb0-4325-e579-38c83580b71e"
+                        "9fe0c678-16c6-4184-c066-da6f37ee5921"
                     ]
                 },
                 "currentHeight": 36,
@@ -97,8 +97,8 @@
             },
             "data": [
                 {
-                    "tabId": "8d92f9d5-cbd1-4788-f761-8b16bab0c7a8",
-                    "resultId": "b694ce04-bcb0-4325-e579-38c83580b71e",
+                    "tabId": "8beed3d6-e529-485c-907f-57406b8a404e",
+                    "resultId": "9fe0c678-16c6-4184-c066-da6f37ee5921",
                     "rows": [
                         {
                             "0": "conversations"
@@ -147,7 +147,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "f94c4274-6731-4881-b0b6-394b140987d4"
+                        "fee10ced-a4c2-4f6f-8d0a-d6733ff45684"
                     ]
                 },
                 "currentHeight": 36,
@@ -166,8 +166,8 @@
             },
             "data": [
                 {
-                    "tabId": "8d92f9d5-cbd1-4788-f761-8b16bab0c7a8",
-                    "resultId": "f94c4274-6731-4881-b0b6-394b140987d4",
+                    "tabId": "8beed3d6-e529-485c-907f-57406b8a404e",
+                    "resultId": "fee10ced-a4c2-4f6f-8d0a-d6733ff45684",
                     "rows": [
                         {
                             "0": "id",
@@ -325,7 +325,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "6ecc84c5-5893-494b-cdad-2775b2ebf1fd"
+                        "4eb5813c-fe78-4149-e2c5-e6b2c1814ce2"
                     ]
                 },
                 "currentHeight": 36,
@@ -362,8 +362,8 @@
             },
             "data": [
                 {
-                    "tabId": "8d92f9d5-cbd1-4788-f761-8b16bab0c7a8",
-                    "resultId": "6ecc84c5-5893-494b-cdad-2775b2ebf1fd",
+                    "tabId": "8beed3d6-e529-485c-907f-57406b8a404e",
+                    "resultId": "4eb5813c-fe78-4149-e2c5-e6b2c1814ce2",
                     "rows": [
                         {
                             "0": "id",
@@ -529,7 +529,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "b9eb3ef3-3792-4b67-a0bd-6e2aaf14af47"
+                        "9d401b4a-4124-4cd2-d766-3941de909668"
                     ]
                 },
                 "currentHeight": 36,
@@ -548,14 +548,14 @@
             },
             "data": [
                 {
-                    "tabId": "8d92f9d5-cbd1-4788-f761-8b16bab0c7a8",
-                    "resultId": "b9eb3ef3-3792-4b67-a0bd-6e2aaf14af47",
+                    "tabId": "8beed3d6-e529-485c-907f-57406b8a404e",
+                    "resultId": "9d401b4a-4124-4cd2-d766-3941de909668",
                     "rows": [
                         {
                             "0": 5,
-                            "1": "Дебаг React приложени и проверка нажатия Enter",
+                            "1": "Дебаг React приложени и проверка",
                             "2": "2025-07-02 02:39:26",
-                            "3": "2025-07-04 19:21:12"
+                            "3": "2025-07-07 08:39:40"
                         },
                         {
                             "0": 8,
@@ -646,7 +646,7 @@
                         }
                     ],
                     "executionInfo": {
-                        "text": "OK, 4 records retrieved in 4.702ms"
+                        "text": "OK, 4 records retrieved in 2.109ms"
                     },
                     "totalRowCount": 4,
                     "hasMoreRows": false,
@@ -738,7 +738,7 @@
                         }
                     ]
                 },
-                "currentHeight": 28,
+                "currentHeight": 34.5,
                 "currentSet": 1,
                 "statements": [
                     {
@@ -762,7 +762,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "fde3dae5-f065-4868-c604-e5bac37f3ee8"
+                        "70b243fe-2b9f-44e9-a755-7ae62052d9a8"
                     ]
                 },
                 "currentHeight": 352,
@@ -781,8 +781,8 @@
             },
             "data": [
                 {
-                    "tabId": "8d92f9d5-cbd1-4788-f761-8b16bab0c7a8",
-                    "resultId": "fde3dae5-f065-4868-c604-e5bac37f3ee8",
+                    "tabId": "8beed3d6-e529-485c-907f-57406b8a404e",
+                    "resultId": "70b243fe-2b9f-44e9-a755-7ae62052d9a8",
                     "rows": [
                         {
                             "0": 7,
@@ -830,28 +830,28 @@
                             "0": 21,
                             "1": 5,
                             "2": "user",
-                            "3": "Как исправить ошибку: ```changable_text.js:16 A component is `contentEditable` and contains `children` managed by React. It is now your responsibility to guarantee that none of those nodes are unexpectedly modified or duplicated. This is probably not intentional.``` ?",
+                            "3": "<p>Как исправить ошибку: <code>changable_text.js:16 A component is `contentEditable` and contains `children` managed by React. It is now your responsibility to guarantee that none of those nodes are unexpectedly modified or duplicated. This is probably not intentional.</code> ?</p>\n",
                             "4": "2025-07-04 18:57:02"
                         },
                         {
                             "0": 22,
                             "1": 5,
                             "2": "ai",
-                            "3": "Чтобы устранить ошибку, связанную с использание `dangerouslySetInnerHTML` с React — рискованная операция. Убедитесь, что ввод не подвержен XSS-атакам и правильно экранирован. Для простого текста лучше использовать `value` + `onChange`.",
+                            "3": "<p>Чтобы устранить ошибку, связанную с использанно экранирован. Для простого текста лучше использовать <code>value</code>nChange</code>.</p>\n",
                             "4": "2025-07-04 18:57:16"
                         },
                         {
                             "0": 23,
                             "1": 5,
                             "2": "user",
-                            "3": "У меня есть ошибка: ```changable_text.js:16 A component is `contentEditable` and contains `children` managed by React. It is now your responsibility to guarantee that none of those nodes are unexpectedly modified or duplicated. This is probably not intentional.```. Я хочу исправить её путём задания всех детей (единственное значение текстового поля) как только начальное значение, а у пользователя будет уже дальше возможность измеять так, как он хочет. Как этого достичь?",
+                            "3": "<p>У меня есть ошибка: <code>changable_text.js:16 A component is `contentEditable` and contains `children` managed by React. It is now your responsibility to guarantee that none of those nodes are unexpectedly modified or duplicated. This is probably not intentional.</code>. Я хочу исправить её путём задания всех детей (единственное значение текстового поля) как только начальное значение, а у пользователя будет уже дальше возможность измеять так, как он хочет. Как этого достичь?</p>\n",
                             "4": "2025-07-04 18:59:37"
                         },
                         {
                             "0": 24,
                             "1": 5,
                             "2": "ai",
-                            "3": "Чтобы решить ошибку, связанную с `contentEditable` элементом и изменением его дочерних узлов, нужно перейти на управляемую модель ввода текста. Вот как это можно сделать:\n\n**1. Используйте `sta дочерние узлы (только привязанный текст).\n\nПеремещая логику ввода в React через `state`, вы устраняете конфликт между DOM через React и прямым доступом пользователя к `contentEditable`.",
+                            "3": "Чтобы решить ошибку, связанную с `contentEditable` элементом и ете конфликт между DOM через React и прямым доступом пользователя к `contentEditable`.",
                             "4": "2025-07-04 19:00:03"
                         },
                         {
@@ -955,7 +955,7 @@
                         }
                     ],
                     "executionInfo": {
-                        "text": "OK, 12 records retrieved in 5.422ms"
+                        "text": "OK, 12 records retrieved in 2.258ms"
                     },
                     "totalRowCount": 12,
                     "hasMoreRows": false,
@@ -975,7 +975,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "0fb888f0-b6f6-4862-b279-d3deb7dc5330"
+                        "3018aac4-b5cc-4faf-df47-ee5b9ad89265"
                     ]
                 },
                 "currentHeight": 224.5625,
@@ -994,8 +994,8 @@
             },
             "data": [
                 {
-                    "tabId": "8d92f9d5-cbd1-4788-f761-8b16bab0c7a8",
-                    "resultId": "0fb888f0-b6f6-4862-b279-d3deb7dc5330",
+                    "tabId": "8beed3d6-e529-485c-907f-57406b8a404e",
+                    "resultId": "3018aac4-b5cc-4faf-df47-ee5b9ad89265",
                     "rows": [
                         {
                             "0": "id",

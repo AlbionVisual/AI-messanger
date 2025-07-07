@@ -84,6 +84,10 @@ function Chat(props) {
   };
 
   const edit_message = async (id, value) => {
+    if (value === "") {
+      throw new Error("Нету нового текста");
+      return;
+    }
     const new_message = {
       content: value,
     };
@@ -138,9 +142,9 @@ function Chat(props) {
             </button>
           </div>
 
-          <ul className="message-list">
+          <div className="message-list">
             {messages.map((message) => (
-              <li key={message.id} className="message">
+              <div key={message.id} className="message">
                 <ChangeableText
                   style={{ float: message.sender ? "right" : "left" }}
                   className="message-text"
@@ -153,9 +157,9 @@ function Chat(props) {
                   className="delete-button">
                   Удалить
                 </button>
-              </li>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       )}
     </div>

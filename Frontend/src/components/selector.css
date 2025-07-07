@@ -6,8 +6,12 @@
 
 }
 
-.chat-item-list {
+.chat-item-list:last-child {
+    border-bottom: none;
+}
 
+.chat-item-list {
+    border-bottom: 1px solid black;
 }
 
 .chat-item {

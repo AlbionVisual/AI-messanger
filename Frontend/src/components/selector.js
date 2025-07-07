@@ -94,10 +94,10 @@ function Selector(props) {
 
   return (
     <div className="chat-selector">
-      <ul className="chat-list">
+      <div className="chat-list">
         <h2>Чаты</h2>
         {chats.map((chats) => (
-          <li
+          <div
             key={chats.id}
             className={`chat-item-list ${
               selected_chat_id === chats.id ? "selected-chat" : ""
@@ -120,9 +120,9 @@ function Selector(props) {
                 Удалить
               </button>
             </div>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
 
       <div className="chat-input">
         <input

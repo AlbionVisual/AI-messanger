@@ -3,6 +3,8 @@
     width: 100%;
     background-color: rgba(0, 0, 0, 0.048);
     border-radius: 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
 .editable-field {
