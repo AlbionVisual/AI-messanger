@@ -16,16 +16,28 @@
     z-index: 1000;
     overflow: hidden;
     position: fixed;
+    justify-content: space-between;
 }
 
 .sidebar.hidden {
     width: 0;
-    height: 100vh;
+    height: 100%;
     overflow: hidden;
 }
 .sidebar.open {
     width: 250px;
-    height: 100vh; 
+    height: 100%; 
+}
+
+.sidebar-footer {
+    bottom:0px;
+    margin-bottom: 50px;
+    text-align: center;
+    color: gray;
+}
+
+.sidebar-header {
+    margin-top: 10px;
 }
 
 .chat-list {
