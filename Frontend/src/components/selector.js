@@ -110,7 +110,7 @@ function Selector(props) {
               <ChangeableText
                 className="chat-name"
                 initial_value={chats.title}
-                end_change={(new_val) => {
+                edit_content={(new_val) => {
                   handle_end_change(chats.id, new_val);
                 }}></ChangeableText>
 

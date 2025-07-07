@@ -7,7 +7,9 @@ function Chat(props) {
   const [message_text, set_message_text] = useState("");
 
   useEffect(() => {
-    show_messages(props.chat_id);
+    if (props.chat_id && typeof props.chat_id === "number") {
+      show_messages(props.chat_id);
+    }
   }, [props]);
 
   const show_messages = async (chat_id) => {
@@ -142,7 +144,7 @@ function Chat(props) {
                 <ChangeableText
                   style={{ float: message.sender ? "right" : "left" }}
                   className="message-text"
-                  end_change={(new_value) =>
+                  edit_content={(new_value) =>
                     edit_message(message.id, new_value)
                   }
                   initial_value={message.content}></ChangeableText>
