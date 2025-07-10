@@ -150,6 +150,7 @@ function Selector(props) {
             </div>
           </div>
         </div>
+        <div className="sidebar-footer">Раскрыть описание</div>
       </div>
     </div>
   );
