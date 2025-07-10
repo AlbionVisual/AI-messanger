@@ -39,7 +39,7 @@ def delete_chat(id):
     remove_dialog(id)
     return jsonify({"message": "Чат удалено"})
 
-@app.route('/api/chats/<int:id>', methods=['POST'])  
+@app.route('/api/chats/<int:id>', methods=['PUT'])  
 def edit_chat_name(id):
     data = request.get_json()
     if not data:
@@ -77,7 +77,7 @@ def delete_message(id):
     message_delete(id)
     return jsonify({"message": "Сообщение удалено"})
 
-@app.route('/api/messages/<int:id>', methods=['POST'])  
+@app.route('/api/messages/<int:id>', methods=['PUT'])  
 def edit_message(id):
     data = request.get_json()
     if not data:
