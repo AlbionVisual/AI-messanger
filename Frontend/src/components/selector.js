@@ -29,10 +29,6 @@ function Selector(props) {
     props.onChatChange && set_selected_chat_id(new_id);
   };
 
-  const toggle_Sidebar = () => {
-    set_sidebar_open(!sidebar_open);
-  };
-
   const add_chat = async () => {
     const new_chat = { chat_name };
 
@@ -103,8 +99,8 @@ function Selector(props) {
       <button className="menu-toggle">{sidebar_open ? "✖" : "☰ "}</button>
       <div
         className={`sidebar ${sidebar_open ? "open" : "hidden"}`}
-        onMouseEnter={toggle_Sidebar}
-        onMouseLeave={toggle_Sidebar}>
+        onPointerEnter={() => set_sidebar_open(true)}
+        onPointerLeave={() => set_sidebar_open(false)}>
         <div className="sidebar-header">
           <div className="chat-list">
             <h2>Чаты</h2>
