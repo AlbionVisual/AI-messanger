@@ -10,7 +10,7 @@ venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-#### Для фронтенда из `Ai_chat_frontend`:
+#### Для фронтенда из `Frontend`:
 
 ```powershell
 npm install

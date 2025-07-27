@@ -1,6 +1,7 @@
 # Работа с Flask
 
 ### Простейшее приложение на Flask
+
 Создайте файл `app.py` и добавьте следующий код:
 
 ```python
@@ -22,12 +23,15 @@ if __name__ == '__main__':
   - `app.run(debug=True)` — запускает локальный сервер на `http://127.0.0.1:5000`.
 
 Запустите приложение:
+
 ```bash
 python app.py
 ```
+
 Откройте браузер и перейдите по адресу `http://127.0.0.1:5000`. Вы увидите текст: **"Привет, это Flask!"**.
 
 ### Создание API с Flask
+
 Flask часто используется для создания REST API, чтобы передавать данные на фронтенд (например, React). Пример API:
 
 ```python
@@ -54,15 +58,18 @@ if __name__ == '__main__':
   - `jsonify` преобразует Python-словарь в JSON.
 
 Проверьте API, перейдя по `http://127.0.0.1:5000/api/users`. Вы увидите JSON:
+
 ```json
 [
-    {"id": 1, "name": "Алексей"},
-    {"id": 2, "name": "Мария"}
+  { "id": 1, "name": "Алексей" },
+  { "id": 2, "name": "Мария" }
 ]
 ```
 
 ### Добавление CORS (для связи с React)
+
 React будет работать на другом порту (например, 3000), а Flask — на 5000. Чтобы избежать проблем с политикой CORS (межсайтовые запросы), установите модуль `flask-cors`:
+
 ```bash
 pip install flask-cors
 ```
@@ -95,11 +102,12 @@ if __name__ == '__main__':
 
 **React** — это библиотека JavaScript для создания пользовательских интерфейсов. Мы настроим React-приложение, которое будет получать данные с Flask API.
 
-
 ### Получение данных с Flask API
+
 Мы создадим компонент React, который делает запрос к Flask API и отображает список пользователей.
 
 1. Установите библиотеку `axios` для HTTP-запросов:
+
    ```bash
    npm install axios
    ```
@@ -107,20 +115,21 @@ if __name__ == '__main__':
 2. Создайте файл `src/App.js` с следующим кодом:
 
 ```jsx
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function App() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     // Запрос к Flask API
-    axios.get('http://127.0.0.1:5000/api/users')
-      .then(response => {
+    axios
+      .get("http://127.0.0.1:5000/api/users")
+      .then((response) => {
         setUsers(response.data); // Сохраняем данные в состояние
       })
-      .catch(error => {
-        console.error('Ошибка при загрузке данных:', error);
+      .catch((error) => {
+        console.error("Ошибка при загрузке данных:", error);
       });
   }, []); // Пустой массив зависимостей — запрос выполняется один раз при загрузке
 
@@ -128,7 +137,7 @@ function App() {
     <div>
       <h1>Пользователи</h1>
       <ul>
-        {users.map(user => (
+        {users.map((user) => (
           <li key={user.id}>{user.name}</li>
         ))}
       </ul>
@@ -146,6 +155,7 @@ export default App;
   - Данные отображаются в виде списка.
 
 ### Запуск
+
 1. Запустите Flask-сервер:
    ```bash
    python app.py
@@ -155,53 +165,49 @@ export default App;
    npm start
    ```
 
-
-
 Откройте `http://localhost:3000` в браузере. Вы увидите список пользователей: **Алексей, Мария**.
-
-
 
 ---
 
-
 ### Получение данных с Flask API
+
 Мы создадим компонент React, который делает запрос к Flask API и отображает список пользователей. Для HTTP-запросов мы будем использовать встроенный API `fetch`.
 
 Создайте файл `src/App.js` с следующим кодом:
 
 ```jsx
-import React, { useState, useEffect } from 'react';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
 
 function App() {
   const [users, setUsers] = useState([]);
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
 
   useEffect(() => {
     // Запрос к Flask API с использованием fetch
-    fetch('http://127.0.0.1:5000/api/users')
-      .then(response => response.json())
-      .then(data => setUsers(data))
-      .catch(error => console.error('Ошибка при загрузке данных:', error));
+    fetch("http://127.0.0.1:5000/api/users")
+      .then((response) => response.json())
+      .then((data) => setUsers(data))
+      .catch((error) => console.error("Ошибка при загрузке данных:", error));
   }, []); // Пустой массив зависимостей — запрос выполняется один раз при загрузке
 
   const addUser = async () => {
     const newUser = { id: users.length + 1, name };
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/users', {
-        method: 'POST',
+      const response = await fetch("http://127.0.0.1:5000/api/users", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(newUser),
       });
       if (!response.ok) {
-        throw new Error('Ошибка при добавлении пользователя');
+        throw new Error("Ошибка при добавлении пользователя");
       }
       setUsers([...users, newUser]); // Обновляем локальный список
-      setName(''); // Очищаем поле ввода
+      setName(""); // Очищаем поле ввода
     } catch (error) {
-      console.error('Ошибка:', error);
+      console.error("Ошибка:", error);
     }
   };
 
@@ -211,12 +217,12 @@ function App() {
       <input
         type="text"
         value={name}
-        onChange={e => setName(e.target.value)}
+        onChange={(e) => setName(e.target.value)}
         placeholder="Введите имя"
       />
       <button onClick={addUser}>Добавить</button>
       <ul>
-        {users.map(user => (
+        {users.map((user) => (
           <li key={user.id}>{user.name}</li>
         ))}
       </ul>
@@ -233,10 +239,10 @@ export default App;
   - Для POST-запроса мы используем `fetch` с параметрами `method`, `headers` и `body`, где `body` содержит JSON-строку нового пользователя.
   - Обработка ошибок осуществляется через `try/catch` и проверку `response.ok`.
 
-
 ## Часть 3: Расширенные возможности и советы
 
 ### 1. Добавление POST-запросов
+
 Чтобы отправлять данные с React на Flask (например, добавлять нового пользователя), добавьте маршрут в Flask:
 
 ```python
@@ -268,43 +274,43 @@ if __name__ == '__main__':
 Добавьте форму в React для отправки данных (`src/App.js`):
 
 ```jsx
-import React, { useState, useEffect } from 'react';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
 
 function App() {
   const [users, setUsers] = useState([]);
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
 
   useEffect(() => {
     // Запрос к Flask API с использованием fetch
-    fetch('http://127.0.0.1:5000/api/users')
-      .then(response => {
+    fetch("http://127.0.0.1:5000/api/users")
+      .then((response) => {
         if (!response.ok) {
-          throw new Error('Ошибка при загрузке данных');
+          throw new Error("Ошибка при загрузке данных");
         }
         return response.json();
       })
-      .then(data => setUsers(data))
-      .catch(error => console.error('Ошибка:', error));
+      .then((data) => setUsers(data))
+      .catch((error) => console.error("Ошибка:", error));
   }, []); // Пустой массив зависимостей — запрос выполняется один раз при загрузке
 
   const addUser = async () => {
     const newUser = { id: users.length + 1, name };
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/users', {
-        method: 'POST',
+      const response = await fetch("http://127.0.0.1:5000/api/users", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(newUser),
       });
       if (!response.ok) {
-        throw new Error('Ошибка при добавлении пользователя');
+        throw new Error("Ошибка при добавлении пользователя");
       }
       setUsers([...users, newUser]); // Обновляем локальный список
-      setName(''); // Очищаем поле ввода
+      setName(""); // Очищаем поле ввода
     } catch (error) {
-      console.error('Ошибка при добавлении:', error);
+      console.error("Ошибка при добавлении:", error);
     }
   };
 
@@ -314,12 +320,12 @@ function App() {
       <input
         type="text"
         value={name}
-        onChange={e => setName(e.target.value)}
+        onChange={(e) => setName(e.target.value)}
         placeholder="Введите имя"
       />
       <button onClick={addUser}>Добавить</button>
       <ul>
-        {users.map(user => (
+        {users.map((user) => (
           <li key={user.id}>{user.name}</li>
         ))}
       </ul>
@@ -331,8 +337,6 @@ export default App;
 ```
 
 Теперь вы можете добавлять новых пользователей через форму.
-
-
 
 ## Часть 4: Пример полной интеграции
 
@@ -367,43 +371,43 @@ if __name__ == '__main__':
 ### React frontend (`frontend/src/App.js`):
 
 ```jsx
-import React, { useState, useEffect } from 'react';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
 
 function App() {
   const [users, setUsers] = useState([]);
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
 
   useEffect(() => {
     // Запрос к Flask API с использованием fetch
-    fetch('http://127.0.0.1:5000/api/users')
-      .then(response => {
+    fetch("http://127.0.0.1:5000/api/users")
+      .then((response) => {
         if (!response.ok) {
-          throw new Error('Ошибка при загрузке данных');
+          throw new Error("Ошибка при загрузке данных");
         }
         return response.json();
       })
-      .then(data => setUsers(data))
-      .catch(error => console.error('Ошибка:', error));
+      .then((data) => setUsers(data))
+      .catch((error) => console.error("Ошибка:", error));
   }, []); // Пустой массив зависимостей — запрос выполняется один раз при загрузке
 
   const addUser = async () => {
     const newUser = { id: users.length + 1, name };
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/users', {
-        method: 'POST',
+      const response = await fetch("http://127.0.0.1:5000/api/users", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(newUser),
       });
       if (!response.ok) {
-        throw new Error('Ошибка при добавлении пользователя');
+        throw new Error("Ошибка при добавлении пользователя");
       }
       setUsers([...users, newUser]); // Обновляем локальный список
-      setName(''); // Очищаем поле ввода
+      setName(""); // Очищаем поле ввода
     } catch (error) {
-      console.error('Ошибка при добавлении:', error);
+      console.error("Ошибка при добавлении:", error);
     }
   };
 
@@ -413,12 +417,12 @@ function App() {
       <input
         type="text"
         value={name}
-        onChange={e => setName(e.target.value)}
+        onChange={(e) => setName(e.target.value)}
         placeholder="Введите имя"
       />
       <button onClick={addUser}>Добавить</button>
       <ul>
-        {users.map(user => (
+        {users.map((user) => (
           <li key={user.id}>{user.name}</li>
         ))}
       </ul>
